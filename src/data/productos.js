@@ -60,7 +60,7 @@ export const productos = [
     nombre: 'Combo Guaro Antioqueño',
     categoria: 'Combos',
     ...calcularOferta(29000),
-    presentacion: '1/4 Antioqueño Azul (250 ml) + Hielo + 2 Sodas + mani',
+    presentacion: '1/4 Antioqueño Azul (260 ml) + Hielo + 2 Sodas + mani',
     imagen: '/Images/productos/combo-antioqueno.webp',
     stock: 4,
     unidades: 'combos'
@@ -122,7 +122,7 @@ export const productos = [
     nombre: 'Aguardiente Antioqueño Azul',
     categoria: 'Aguardiente',
     ...calcularOferta(21000),
-    presentacion: 'Cartón 250 ml',
+    presentacion: 'Cartón 260 ml',
     imagen: '/Images/productos/Antioqueño.webp',
     stock: 4,
     unidades: 'cartones'
@@ -153,7 +153,7 @@ export const productos = [
   // --- RON ---
   {
     id: 'rn-01',
-    nombre: 'Ron Viejo de Caldas 3 Años',
+    nombre: 'Ron Viejo de Caldas',
     categoria: 'Ron',
     ...calcularOferta(33000),
     presentacion: 'Botella 375 ml',
@@ -163,7 +163,7 @@ export const productos = [
   },
   {
     id: 'rn-02',
-    nombre: 'Ron Viejo de Caldas 3 Años',
+    nombre: 'Ron Viejo de Caldas',
     categoria: 'Ron',
     ...calcularOferta(21000),
     presentacion: 'Cartón 250 ml',
@@ -176,7 +176,7 @@ export const productos = [
     nombre: 'Ron Medellín Añejo 3 Años',
     categoria: 'Ron',
     ...calcularOferta(19000),
-    presentacion: 'Cartón 250 ml',
+    presentacion: 'Cartón 260 ml',
     imagen: '/Images/productos/ron-medellin.webp',
     stock: 4,
     unidades: 'cartones'
@@ -260,14 +260,14 @@ export const productos = [
     nombre: 'Vodka Smirnoff',
     categoria: 'Vodka',
     ...calcularOferta(6000),
-    presentacion: 'Lata 330 ml',
+    presentacion: 'Lata 250 ml',
     imagen: '/Images/productos/Vodka-Smirnoff.webp',
     stock: 7,
     unidades: 'latas'
   },
   {
     id: 'vod-02',
-    nombre: 'Vodka Like',
+    nombre: 'Vodka Like Citrus',
     categoria: 'Vodka',
     ...calcularOferta(5500),
     presentacion: 'Botella 300 ml',
@@ -384,7 +384,7 @@ export const productos = [
     nombre: 'Hidralyte Blueberry/Maracuya/Fresa Kiwi',
     categoria: 'Hidratantes y Energizantes',
     ...calcularOferta(5500),
-    presentacion: 'Botella 625 ml',
+    presentacion: 'Botella 640 ml',
     imagen: '/Images/productos/Hidralyte.webp',
     stock: 11,
     unidades: 'botellas'
@@ -426,7 +426,7 @@ export const productos = [
     nombre: 'Bretaña',
     categoria: 'Otras Bebidas',
     ...calcularOferta(2500),
-    presentacion: 'Botella 400 ml',
+    presentacion: 'Botella 300 ml',
     imagen: '/Images/productos/Bretaña.webp',
     stock: 24,
     unidades: 'botellas'
