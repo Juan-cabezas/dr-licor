@@ -5,9 +5,9 @@ import Productos from './pages/Productos';
 import ScrollToTop from './components/ScrollToTop';
 import CartFloatButton from './components/CartFloatButton';
 import CartDrawer from './components/CartDrawer';
-import AgeVerificationModal from './components/AgeVerificationModal'; // Importamos la verificación de edad
+import AgeVerificationModal from './components/AgeVerificationModal';
 import { CartProvider } from './context/CartContext';
-import Footer from './components/Footer'; // Importamos el Footer Global
+import Footer from './components/Footer';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,14 +23,14 @@ export default function App() {
         {/* VERIFICACIÓN DE EDAD (Modal que bloquea si no se ha confirmado) */}
         <AgeVerificationModal />
         
-        {/* NAVBAR GLOBAL (Conservado exactamente como lo tenías) */}
+        {/* NAVBAR GLOBAL */}
         <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-900">
           <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
             {/* Logo, Nombre y Badge de Estado */}
             <div className="flex items-center gap-2 sm:gap-3">
               <Link to="/" onClick={closeMenu} className="flex items-center gap-2 sm:gap-3 shrink-0">
                 
-                {/* CONTENEDOR RECTANGULAR DEL LOGO */}
+                {/* CONTENEDOR DEL LOGO */}
                 <div className="relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center overflow-hidden rounded-xl border border-amber-500/40 bg-slate-900/90 p-0.5 sm:p-1 shadow-sm transition-transform hover:scale-105">
                   <img
                     src="/Images/dr-licor-logo.svg"
@@ -38,14 +38,12 @@ export default function App() {
                     className="h-full w-full object-contain"
                   />
                 </div>
-
-                {/* NOMBRE DE LA MARCA */}
                 <span className="text-lg sm:text-2xl font-black uppercase tracking-wider text-white">
                   Dr. <span className="text-amber-500">Licor</span>
                 </span>
               </Link>
 
-              {/* BADGE DE ESTADO (En Servicio / Fuera de Servicio) */}
+              {/* BADGE DE ESTADO (En Servicio) */}
               {enServicio ? (
                 <span className="ml-1 sm:ml-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-semibold text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -140,13 +138,13 @@ export default function App() {
           </Routes>
         </main>
 
-        {/* FOOTER GLOBAL (Aparecerá en todas las páginas) */}
+        {/* FOOTER GLOBAL */}
         <Footer />
 
         {/* COMPONENTES FLOTANTES */}
         <CartDrawer />
         <CartFloatButton /> {/* Aparece solo cuando hay productos, ubicado arriba del scroll */}
-        <ScrollToTop />     {/* Tu botón original en la esquina inferior derecha */}
+        <ScrollToTop />     {/* Botón arriba en la esquina inferior derecha */}
       </div>
     </CartProvider>
   );

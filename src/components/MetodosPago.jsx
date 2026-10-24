@@ -18,7 +18,7 @@ export default function MetodosPagoBarra() {
 
         <div className="hidden h-8 w-px bg-slate-800 sm:block" />
 
-        {/* OPCIÓN 2: EFECTIVO */}
+        {/* OPCIÓN 2: CONTRAENTREGA */}
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-xl text-amber-400 ring-1 ring-amber-500/20">
             💵
@@ -31,7 +31,7 @@ export default function MetodosPagoBarra() {
 
         <div className="hidden h-8 w-px bg-slate-800 sm:block" />
 
-        {/* OPCIÓN 2: Cobertura */}
+        {/* OPCIÓN 2: COBERTURA */}
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-xl text-amber-400 ring-1 ring-amber-500/20">
             📍
@@ -39,6 +39,7 @@ export default function MetodosPagoBarra() {
           <div>
             <h4 className="text-xs font-bold text-white">Cobertura De Entregas</h4>
             <p className="text-[11px] text-slate-400">Domicilios a barrios cercanos a Suba San Pedro</p>
+            <p className="text-[11px] text-slate-400">Costo del envío: $6.000 pesos.</p>
           </div>
         </div>
 

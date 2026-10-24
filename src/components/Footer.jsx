@@ -80,7 +80,7 @@ export default function Footer() {
                         </ul>
                     </div>
                 </div>
-                {/* LEYENDAS LEGALES (OBLIGATORIAS EN COLOMBIA) */}
+                {/* ENLASES LEGALES  */}
                 <div className="mt-10 border-t border-slate-900/80 pt-6 text-center text-[11px] text-slate-500 space-y-1">
                     <p> El exceso de alcohol es perjudicial para la salud.{' '}
                         <a

@@ -27,7 +27,7 @@ export default function Productos() {
             Catálogo de Productos
           </h1>
           <p className="mt-3 text-slate-400 text-sm">
-            Selecciona los licores e insumos que deseas para agregarlos a tu pedido.
+            Selecciona los licores que deseas para agregarlos a tu pedido.
           </p>
           
           {/* BARRA SUPERIOR DE CATEGORÍAS */}
@@ -90,7 +90,7 @@ export default function Productos() {
                           }}
                         />
 
-                        {/* BADGE DE DESCUENTO CORREGIDO */}
+                        {/* BADGE DE DESCUENTO */}
                         {tieneDescuento ? (
                           <div className="absolute top-3 left-3 z-10">
                             <span className="rounded-md bg-rose-600 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">

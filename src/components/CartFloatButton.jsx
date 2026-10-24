@@ -8,7 +8,7 @@ export default function CartFloatButton() {
   if (totalArticulos === 0) return null;
 
   return (
-    <div className="fixed bottom-20 right-6 z-40 animate-bounce-short">
+    <div className="fixed bottom-22 right-6 z-40 animate-bounce-short">
       <button
         onClick={toggleCart}
         className="flex items-center gap-3 rounded-2xl bg-amber-500 px-4 py-3 text-slate-950 font-black shadow-xl shadow-amber-500/30 hover:bg-amber-400 transition-all border border-amber-300 active:scale-95"

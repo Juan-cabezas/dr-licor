@@ -8,7 +8,7 @@ export default function AgeVerificationModal() {
     // Usamos sessionStorage para que el modal aparezca cada vez que se cierre y reabra la pestaña/navegador
     const verificado = sessionStorage.getItem('dr_licor_mayor_edad');
     if (!verificado) {
-      setEsMayor(false); // Si no hay registro en esta sesión, se muestra el modal
+      setEsMayor(false); 
     }
     setCargando(false);
   }, []);

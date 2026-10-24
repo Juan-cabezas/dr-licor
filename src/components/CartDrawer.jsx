@@ -129,10 +129,11 @@ export default function CartDrawer() {
               <div className="rounded-xl border border-slate-800 bg-slate-950 p-3 text-[11px] text-slate-400 space-y-1">
                 <div className="flex items-center gap-1.5 text-slate-200 font-bold">
                   <span>💳</span>
-                  <span>Métodos de Pago Aceptados:</span>
+                  <span>Métodos de Pago y envío:</span>
                 </div>
                 <p>• Transferencia bancaria (QR / Llaves)</p>
                 <p>• Contra entrega (transferencia / QR / Llaves)</p>
+                <p>• El envío tiene un costo de $6.000 mil pesos.</p>
               </div>
 
               <a
@@ -150,7 +151,6 @@ export default function CartDrawer() {
               </p>
             </div>
           )}
-
         </div>
       </div>
     </div>

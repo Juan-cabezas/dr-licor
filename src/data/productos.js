@@ -27,85 +27,105 @@ export const productos = [
   // --- COMBOS ---
   {
     id: 'cb-01',
-    nombre: 'Combo Fiesta Néctar Verde',
+    nombre: 'Combo VIP Buchanan\'s 12',
     categoria: 'Combos',
-    ...calcularOferta(68000, 9),
-    presentacion: 'Néctar 750ml + Hielo 3kg + 2 Gatorade',
-    imagen: '/Images/productos/combo-nectar.jpg',
-    stock: 5,
+    ...calcularOferta(200000),
+    presentacion: 'Buchanan\'s 750ml + 2 monsters + Hielo',
+    imagen: '/Images/productos/combo-buchanans.webp',
+    stock: 1,
     unidades: 'combos'
   },
   {
     id: 'cb-02',
-    nombre: 'Combo Guaro Antioqueño',
+    nombre: 'Combo Fiesta Néctar Verde',
     categoria: 'Combos',
-    ...calcularOferta(72000, 10),
-    presentacion: 'Antioqueño Tapa Azul 750ml + Hielo 3kg + 2 Sodas',
-    imagen: '/Images/productos/combo-antioqueno.jpg',
-    stock: 8,
+    ...calcularOferta(34000),
+    presentacion: 'Media de nectar (375 ml) + Hielo + 2 Gatorade',
+    imagen: '/Images/productos/combo-nectar.webp',
+    stock: 10,
+    unidades: 'combos'
+  }, 
+  {
+    id: 'cb-03',
+    nombre: 'Combo Desenguayabe (3-4 personas)',
+    categoria: 'Combos',
+    ...calcularOferta(74900,10),
+    presentacion: '1 Aguardiente Amarillo 750 ml + Hielo + 2 Speed Max 310 ml + 1 Maní Con Sal + 4 Bon Bon Bum',
+    imagen: '/Images/productos/Combo-Desenguayabe.webp',
+    stock: 5,
     unidades: 'combos'
   },
   {
-    id: 'cb-03',
-    nombre: 'Combo VIP Buchanan\'s 12',
+    id: 'cb-04',
+    nombre: 'Combo Guaro Antioqueño',
     categoria: 'Combos',
-    ...calcularOferta(165000, 11),
-    presentacion: 'Buchanan\'s 750ml + 4 Red Bull + Hielo 3kg',
-    imagen: '/Images/productos/combo-buchanans.jpg',
-    stock: 3,
+    ...calcularOferta(29000),
+    presentacion: '1/4 Antioqueño Azul (250 ml) + Hielo + 2 Sodas + mani',
+    imagen: '/Images/productos/combo-antioqueno.webp',
+    stock: 4,
+    unidades: 'combos'
+  },
+  {
+    id: 'cb-05',
+    nombre: 'Combo Cervesero',
+    categoria: 'Combos',
+    ...calcularOferta(54900),
+    presentacion: '1 Sixpack Cerveza Corona Extra (Lata) + 1 Sixpack Club Colombia Dorada o Póker + 2 Paquetes de Maní Con Sal + 4 Bon Bon Bum',
+    imagen: '/Images/productos/combo-antioqueno.webp',
+    stock: 12,
     unidades: 'combos'
   },
 
   // --- AGUARDIENTE ---
   {
     id: 'ag-01',
-    nombre: 'Aguardiente Néctar Verde',
+    nombre: 'Aguardiente Amarillo',
     categoria: 'Aguardiente',
-    ...calcularOferta(48000),
-    presentacion: 'Botella 375 ml',
-    imagen: '/Images/productos/nectar-verde-375.jpg',
-    stock: 10,
+    ...calcularOferta(58000),
+    presentacion: 'Botella 750 ml',
+    imagen: '/Images/productos/amarillo-750.webp',
+    stock: 5,
     unidades: 'botellas'
   },
   {
     id: 'ag-02',
     nombre: 'Aguardiente Néctar Verde',
     categoria: 'Aguardiente',
-    ...calcularOferta(48000),
-    presentacion: 'Botella 250 ml',
-    imagen: '/Images/productos/nectar-verde-250.jpg',
-    stock: 10,
+    ...calcularOferta(33000),
+    presentacion: 'Botella 375 ml',
+    imagen: '/Images/productos/amarillo-375.webp',
+    stock: 5,
     unidades: 'botellas'
   },
   {
     id: 'ag-03',
-    nombre: 'Aguardiente Amarillo',
+    nombre: 'Aguardiente Néctar Verde',
     categoria: 'Aguardiente',
-    ...calcularOferta(55000, 0, 60000),
-    presentacion: 'Botella 750 ml',
-    imagen: '/Images/productos/amarillo-750.jpg',
-    stock: 5,
+    ...calcularOferta(26000,0,28000),
+    presentacion: 'Botella 375 ml',
+    imagen: '/Images/productos/nectar-verde-375.webp',
+    stock: 10,
     unidades: 'botellas'
   },
   {
     id: 'ag-04',
-    nombre: 'Aguardiente Amarillo',
+    nombre: 'Aguardiente Néctar Verde',
     categoria: 'Aguardiente',
-    ...calcularOferta(48000),
-    presentacion: 'Botella 375 ml',
-    imagen: '/Images/productos/amarillo-375.jpg',
-    stock: 5,
-    unidades: 'botellas'
+    ...calcularOferta(16000),
+    presentacion: 'Carton 250 ml',
+    imagen: '/Images/productos/nectar-verde-250.webp',
+    stock: 10,
+    unidades: 'cartones'
   },
   {
     id: 'ag-05',
-    nombre: 'Aguardiente Antioqueño Tapa Azul',
+    nombre: 'Aguardiente Antioqueño Azul',
     categoria: 'Aguardiente',
-    ...calcularOferta(55000, 0, 60000),
-    presentacion: 'Botella 250 ml',
-    imagen: '/Images/productos/Antioqueño.jpg',
+    ...calcularOferta(21000),
+    presentacion: 'Carton 250 ml',
+    imagen: '/Images/productos/Antioqueño.webp',
     stock: 4,
-    unidades: 'botellas'
+    unidades: 'cartones'
   },
 
   // --- WHISKY ---
@@ -113,9 +133,9 @@ export const productos = [
     id: 'wh-01',
     nombre: 'Whisky Buchanan\'s Deluxe 12 Años',
     categoria: 'Whisky',
-    ...calcularOferta(55000, 0, 60000),
+    ...calcularOferta(180000),
     presentacion: 'Botella 750 ml',
-    imagen: '/Images/productos/buchanans-12.jpg',
+    imagen: '/Images/productos/buchanans-12.webp',
     stock: 1,
     unidades: 'botellas'
   },
@@ -123,9 +143,9 @@ export const productos = [
     id: 'wh-02',
     nombre: 'Whisky Old Parr 12 Años',
     categoria: 'Whisky',
-    ...calcularOferta(138000, 0, 150000),
+    ...calcularOferta(160000),
     presentacion: 'Botella 750 ml',
-    imagen: '/Images/productos/old-parr.jpg',
+    imagen: '/Images/productos/old-parr.webp',
     stock: 1,
     unidades: 'botellas'
   },
@@ -133,22 +153,32 @@ export const productos = [
   // --- RON ---
   {
     id: 'rn-01',
-    nombre: 'Ron Medellín Añejo 3 Años',
+    nombre: 'Ron Viejo de Caldas 3 Años',
     categoria: 'Ron',
-    ...calcularOferta(55000, 0, 60000),
-    presentacion: 'Botella 250 ml',
-    imagen: '/Images/productos/ron-medellin.jpg',
-    stock: 4,
+    ...calcularOferta(33000),
+    presentacion: 'Botella 375 ml',
+    imagen: '/Images/productos/caldas-375.webp',
+    stock: 2,
     unidades: 'botellas'
   },
   {
     id: 'rn-02',
     nombre: 'Ron Viejo de Caldas 3 Años',
     categoria: 'Ron',
-    ...calcularOferta(55000, 0, 60000),
-    presentacion: 'Botella 375 ml',
-    imagen: '/Images/productos/caldas-375.jpg',
-    stock: 2,
+    ...calcularOferta(21000),
+    presentacion: 'Botella 250 ml',
+    imagen: '/Images/productos/caldas-250.webp',
+    stock: 4,
+    unidades: 'botellas'
+  },
+  {
+    id: 'rn-03',
+    nombre: 'Ron Medellín Añejo 3 Años',
+    categoria: 'Ron',
+    ...calcularOferta(19000),
+    presentacion: 'Botella 250 ml',
+    imagen: '/Images/productos/ron-medellin.webp',
+    stock: 4,
     unidades: 'botellas'
   },
   {
@@ -165,11 +195,11 @@ export const productos = [
   // --- CERVEZA ---
   {
     id: 'cv-01',
-    nombre: 'Sixpack Cerveza Corona Extra',
+    nombre: 'Sixpack Corona Extra',
     categoria: 'Cerveza',
     ...calcularOferta(26000),
     presentacion: '6 Latas 269 ml',
-    imagen: '/Images/productos/corona-sixpack.jpg',
+    imagen: '/Images/productos/corona-sixpack.webp',
     stock: 32,
     unidades: 'sixpacks'
   },
@@ -179,7 +209,7 @@ export const productos = [
     categoria: 'Cerveza',
     ...calcularOferta(22000,0,24000),
     presentacion: '6 Latas 330 ml',
-    imagen: '/Images/productos/club-dorada.jpg',
+    imagen: '/Images/productos/club-dorada.webp',
     stock: 32,
     unidades: 'sixpacks'
   },
@@ -187,9 +217,9 @@ export const productos = [
     id: 'cv-03',
     nombre: 'Sixpack Poker',
     categoria: 'Cerveza',
-   ...calcularOferta(22000, 0, 24000),
+    ...calcularOferta(22000, 0, 24000),
     presentacion: '6 Latas 330 ml',
-    imagen: '/Images/productos/Poker-Sixpack.jpg',
+    imagen: '/Images/productos/Poker-Sixpack.webp',
     stock: 32,
     unidades: 'sixpacks'
   },
@@ -199,7 +229,7 @@ export const productos = [
     categoria: 'Cerveza',
     ...calcularOferta(21000, 0, 23000),
     presentacion: '6 Latas 330 ml',
-    imagen: '/Images/productos/Águila-Sixpack.jpg',
+    imagen: '/Images/productos/Águila-Sixpack.webp',
     stock: 32,
     unidades: 'sixpacks'
   },
@@ -209,8 +239,28 @@ export const productos = [
     categoria: 'Cerveza',
     ...calcularOferta(13000, 0, 14000),
     presentacion: '6 Latas 310 ml',
-    imagen: '/Images/productos/Costeña-Original-Sixpack.jpg',
+    imagen: '/Images/productos/Costeña-Original-Sixpack.webp',
     stock: 32,
+    unidades: 'sixpacks'
+  },
+  {
+    id: 'cv-06',
+    nombre: 'Sixpack Heineken',
+    categoria: 'Cerveza',
+    ...calcularOferta(0),
+    presentacion: '6 Latas 269 ml',
+    imagen: '/Images/productos/Heineken-Sixpack.webp',
+    stock: 0,
+    unidades: 'sixpacks'
+  },
+  {
+    id: 'cv-07',
+    nombre: 'Sixpack Budweiser',
+    categoria: 'Cerveza',
+    ...calcularOferta(0),
+    presentacion: '6 Latas 269 ml',
+    imagen: '/Images/productos/Budweiser-Sixpack.webp',
+    stock: 0,
     unidades: 'sixpacks'
   },
 
@@ -221,7 +271,7 @@ export const productos = [
     categoria: 'Vodka',
     ...calcularOferta(6000),
     presentacion: 'Lata 330 ml',
-    imagen: '/Images/productos/Vodka-Smirnoff.jpg',
+    imagen: '/Images/productos/Vodka-Smirnoff.webp',
     stock: 7,
     unidades: 'Latas'
   },
@@ -231,19 +281,39 @@ export const productos = [
     categoria: 'Vodka',
     ...calcularOferta(5500),
     presentacion: 'Botella 300 ml',
-    imagen: '/Images/productos/Vodka-Like.jpg',
+    imagen: '/Images/productos/Vodka-Like.webp',
     stock: 24,
+    unidades: 'Botella'
+  },
+{
+    id: 'vod-03',
+    nombre: 'Vodka Smirnoff Tamarindo',
+    categoria: 'Vodka',
+    ...calcularOferta(0),
+    presentacion: 'Botella 750 ml',
+    imagen: '/Images/productos/Vodka-Smirnoff-Tamarindo.webp',
+    stock: 0,
     unidades: 'Botella'
   },
 
   // --- CIGARRILLOS ---
   {
     id: 'cig-01',
-    nombre: 'Lucky Verde',
+    nombre: 'Lucky Strike Verde',
     categoria: 'Cigarrillos',
     ...calcularOferta(7500),
     presentacion: 'Medio',
-    imagen: '/Images/productos/Luke-Verde-Medio.jpg',
+    imagen: '/Images/productos/Lucky-Verde-Medio.webp',
+    stock: 20,
+    unidades: 'Medios'
+  },
+  {
+    id: 'cig-02',
+    nombre: 'Lucky Strike Alaska',
+    categoria: 'Cigarrillos',
+    ...calcularOferta(7500),
+    presentacion: 'Medio',
+    imagen: '/Images/productos/Lucky-Alaska-Medio.webp',
     stock: 20,
     unidades: 'Medios'
   },
@@ -263,29 +333,39 @@ export const productos = [
     categoria: 'Cigarrillos',
     ...calcularOferta(6500),
     presentacion: 'Medio',
-    imagen: '/Images/productos/Mustang-Azul-Medio.jpg',
+    imagen: '/Images/productos/Mustang-Azul-Medio.webp',
     stock: 40,
     unidades: 'Medios'
   },
   {
     id: 'cig-04',
+    nombre: 'Encendedor Clipper',
+    categoria: 'Cigarrillos',
+    ...calcularOferta(0),
+    presentacion: 'Unidad',
+    imagen: '/Images/productos/Encendedor-Clipper.webp',
+    stock: 0,
+    unidades: 'Unidades'
+  },
+  {
+    id: 'cig-05',
     nombre: 'Encendedor',
     categoria: 'Cigarrillos',
-   ...calcularOferta(3500),
+    ...calcularOferta(3500),
     presentacion: 'Unidad',
-    imagen: '/Images/productos/Encendedores.jpg',
+    imagen: '/Images/productos/Encendedores.webp',
     stock: 25,
     unidades: 'Unidades'
   },
 
-  // --- hidratantes y energizantes ---
+  // --- Hidratantes y Energizantes ---
   {
     id: 'hid-01',
     nombre: 'Monster',
     categoria: 'Hidratantes y Energizantes',
     ...calcularOferta(9500),
     presentacion: 'Lata 473 ml',
-    imagen: '/Images/productos/Monsters.jpg',
+    imagen: '/Images/productos/Monsters.webp',
     stock: 10,
     unidades: 'latas'
   },
@@ -293,19 +373,19 @@ export const productos = [
     id: 'hid-02',
     nombre: 'Speed Max',
     categoria: 'Hidratantes y Energizantes',
-    ...calcularOferta(2200),
+    ...calcularOferta(2500),
     presentacion: 'Lata 310 ml',
-    imagen: '/Images/productos/Speed-Max-310.jpg',
+    imagen: '/Images/productos/Speed-Max-310.webp',
     stock: 24,
     unidades: 'latas'
   },
- {
+  {
     id: 'hid-03',
     nombre: 'Speed Max',
     categoria: 'Hidratantes y Energizantes',
-    ...calcularOferta(1600),
-    presentacion: 'Lata 250 ml',
-    imagen: '/Images/productos/Speed-Max-250.jpg',
+    ...calcularOferta(1800),
+    presentacion: 'Botella 250 ml',
+    imagen: '/Images/productos/Speed-Max-250.webp',
     stock: 11,
     unidades: 'botellas'
   },
@@ -315,8 +395,8 @@ export const productos = [
     categoria: 'Hidratantes y Energizantes',
     ...calcularOferta(8500),
     presentacion: 'Botella 625 ml',
-    imagen: '/Images/productos/Electrolit.jpg',
-    stock: 11,
+    imagen: '/Images/productos/Electrolit.webp',
+    stock: 6,
     unidades: 'botellas'
   },
   {
@@ -325,7 +405,7 @@ export const productos = [
     categoria: 'Hidratantes y Energizantes',
     ...calcularOferta(5500),
     presentacion: 'Botella 625 ml',
-    imagen: '/Images/productos/Hidralyte.jpg',
+    imagen: '/Images/productos/Hidralyte.webp',
     stock: 11,
     unidades: 'botellas'
   },
@@ -335,7 +415,7 @@ export const productos = [
     categoria: 'Hidratantes y Energizantes',
     ...calcularOferta(4000),
     presentacion: 'Botella 500 ml',
-    imagen: '/Images/productos/Gatorade.jpg',
+    imagen: '/Images/productos/Gatorade.webp',
     stock: 12,
     unidades: 'botellas'
   },
@@ -343,51 +423,41 @@ export const productos = [
   // --- Hielo Y Otras Bebidas ---
   {
     id: 'ins-01',
-    nombre: 'Bolsa de Hielo',
-    categoria: 'Otras Bebidas',
-    ...calcularOferta(3000),
-    presentacion: 'Bolsa 3 Kg',
-    imagen: '/Images/productos/hielo.jpg',
-    stock: 50,
-    unidades: 'bolsas'
-  },
-  {
-    id: 'ins-02',
     nombre: 'Los Cuates',
     categoria: 'Otras Bebidas',
     ...calcularOferta(5000,0,5500),
     presentacion: 'Lata 269 ml',
-    imagen: '/Images/productos/Los-Cuates.jpg',
+    imagen: '/Images/productos/Los-Cuates.webp',
     stock: 15,
+    unidades: 'latas'
+  },
+  {
+    id: 'ins-02',
+    nombre: 'Four Loko',
+    categoria: 'Otras Bebidas',
+    ...calcularOferta(18500,0,20000),
+    presentacion: 'Lata 473 ml',
+    imagen: '/Images/productos/Four-Loko.webp',
+    stock: 9,
     unidades: 'latas'
   },
   {
     id: 'ins-03',
-    nombre: 'Flur Loko',
-    categoria: 'Otras Bebidas',
-    ...calcularOferta(18500,0,20000),
-    presentacion: 'Lata 473 ml',
-    imagen: '/Images/productos/Flur-Loko.jpg',
-    stock: 15,
-    unidades: 'latas'
-  },
-  {
-    id: 'ins-04',
     nombre: 'Bretaña',
     categoria: 'Otras Bebidas',
     ...calcularOferta(2500),
     presentacion: 'Botella 400 ml',
-    imagen: '/Images/productos/Bretaña.jpg',
+    imagen: '/Images/productos/Bretaña.webp',
     stock: 24,
     unidades: 'botellas'
   },
   {
-    id: 'ins-05',
+    id: 'ins-04',
     nombre: 'Gaseosa Coca-Cola',
     categoria: 'Otras Bebidas',
     ...calcularOferta(4000),
     presentacion: 'Botella 400 ml',
-    imagen: '/Images/productos/Coca-Cola.jpg',
+    imagen: '/Images/productos/Coca-Cola.webp',
     stock: 34,
     unidades: 'botellas'
   }

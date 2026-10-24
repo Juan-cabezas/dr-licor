@@ -20,8 +20,6 @@ export default function Home() {
         
         // Texto para WhatsApp
         const mensajeWA = `Hola Dr. Licor, mi nombre es ${contacto.nombre}, y mi correo electrónico es ${contacto.correo}.\n\n*Consulta / Cotización:\n${contacto.mensaje}`;
-        
-        // Redirección directa a número de WhatsApp
         const url = `https://wa.me/573222524569?text=${encodeURIComponent(mensajeWA)}`;
         window.open(url, '_blank');
     };
@@ -93,14 +91,14 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
-                            <img src="/Images/right.jpg" alt="Bodega Dr. Licor" className="h-96 w-full object-cover" />
+                            <img src="/Images/right.webp" alt="Bodega Dr. Licor" className="h-96 w-full object-cover" />
                         </div>
                     </div>
 
                     {/* Bloque 2: Promesa de Valor */}
                     <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
                         <div className="order-last lg:order-first overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
-                            <img src="/Images/right_2.jpg" alt="Atención Nocturna" className="h-96 w-full object-cover" />
+                            <img src="/Images/right_2.webp" alt="Atención Nocturna" className="h-96 w-full object-cover" />
                         </div>
                         <div>
                             <span className="text-xs font-bold uppercase tracking-widest text-amber-500">Eficiencia Sin Esperas</span>
@@ -134,33 +132,30 @@ export default function Home() {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold text-white sm:text-4xl">Nuestros Pilares</h2>
-                    <div className="mx-auto mt-3 h-1 w-20 bg-amber-500 rounded-full" />
+                        <div className="mx-auto mt-3 h-1 w-20 bg-amber-500 rounded-full" />
                     </div>
-
                     <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 text-center transition hover:border-amber-500/50">
                             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 font-bold text-xl">
-                            ⚡
+                                ⚡
                             </div>
                             <h3 className="mt-6 text-xl font-bold text-white">Atención Inmediata</h3>
                             <p className="mt-3 text-sm text-slate-400">
                                 Respuesta en minutos con uno de nuestros asesores directamente vía WhatsApp.
                             </p>
                         </div>
-
                         <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 text-center transition hover:border-amber-500/50">
                             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 font-bold text-xl">
-                            🏷️
+                                🏷️
                             </div>
                             <h3 className="mt-6 text-xl font-bold text-white">Garantía De Legalidad</h3>
                             <p className="mt-3 text-sm text-slate-400">
                                 Todo nuestro portafolio cuenta con factura legal y estampillas departamentales al día.
                             </p>
                         </div>
-
                         <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 text-center transition hover:border-amber-500/50">
                             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 font-bold text-xl">
-                            ❄️
+                                ❄️
                             </div>
                             <h3 className="mt-6 text-xl font-bold text-white">Solución Integral</h3>
                             <p className="mt-3 text-sm text-slate-400">
@@ -186,7 +181,7 @@ export default function Home() {
                             </div>
                             <div className="overflow-hidden rounded-2xl">
                                 <img 
-                                    src="/Images/t2.jpg" 
+                                    src="/Images/t2.webp" 
                                     alt="Atención Nocturna - Nuestra Sede" 
                                     className="w-full h-48 sm:h-56 object-cover object-top rounded-2xl" 
                                 />
