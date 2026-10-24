@@ -8,10 +8,10 @@ export default function Footer() {
                 {/* GRID PRINCIPAL */}
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {/* COLUMNA 1: MARCA Y DESCRIPCIÓN */}
-                    <div className="flex flex-col justify-between space-y-4">
+                    <div className="flex flex-col justify-between">
                         <div>
                             <Link to="/" className="inline-flex items-center gap-2">
-                                <span className="text-2xl font-black uppercase tracking-wider text-white">
+                                <span className="text-3xl font-black uppercase tracking-wider text-white">
                                     Dr. <span className="text-amber-500">Licor</span>
                                 </span>
                             </Link>
@@ -31,8 +31,7 @@ export default function Footer() {
                         <ul className="mt-4 space-y-2 text-xs text-slate-400">
                             <li>• Tiempo aprox: 30 minutos.</li>
                             <li>• Cobertura: Suba San Pedro y barrios cercanos.</li>
-                            <li>• Localidad de Suba.</li>
-                            <li>• Bogotá D.C.</li>
+                            <li>• Localidad de Suba, Bogotá D.C.</li>
                         </ul>
                     </div>
                     {/* COLUMNA 3: HORARIOS Y ATENCIÓN */}

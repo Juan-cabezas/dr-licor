@@ -67,11 +67,11 @@ export const productos = [
   },
   {
     id: 'cb-05',
-    nombre: 'Combo Cervesero',
+    nombre: 'Combo Cervezero',
     categoria: 'Combos',
     ...calcularOferta(54900),
     presentacion: '1 Sixpack Cerveza Corona Extra (Lata) + 1 Sixpack Club Colombia Dorada o Póker + 2 Paquetes de Maní Con Sal + 4 Bon Bon Bum',
-    imagen: '/Images/productos/combo-antioqueno.webp',
+    imagen: '/Images/productos/combo-cerveza.webp',
     stock: 12,
     unidades: 'combos'
   },
@@ -89,7 +89,7 @@ export const productos = [
   },
   {
     id: 'ag-02',
-    nombre: 'Aguardiente Néctar Verde',
+    nombre: 'Aguardiente Amarillo',
     categoria: 'Aguardiente',
     ...calcularOferta(33000),
     presentacion: 'Botella 375 ml',
@@ -112,7 +112,7 @@ export const productos = [
     nombre: 'Aguardiente Néctar Verde',
     categoria: 'Aguardiente',
     ...calcularOferta(16000),
-    presentacion: 'Carton 250 ml',
+    presentacion: 'Cartón 250 ml',
     imagen: '/Images/productos/nectar-verde-250.webp',
     stock: 10,
     unidades: 'cartones'
@@ -122,7 +122,7 @@ export const productos = [
     nombre: 'Aguardiente Antioqueño Azul',
     categoria: 'Aguardiente',
     ...calcularOferta(21000),
-    presentacion: 'Carton 250 ml',
+    presentacion: 'Cartón 250 ml',
     imagen: '/Images/productos/Antioqueño.webp',
     stock: 4,
     unidades: 'cartones'
@@ -166,30 +166,20 @@ export const productos = [
     nombre: 'Ron Viejo de Caldas 3 Años',
     categoria: 'Ron',
     ...calcularOferta(21000),
-    presentacion: 'Botella 250 ml',
+    presentacion: 'Cartón 250 ml',
     imagen: '/Images/productos/caldas-250.webp',
     stock: 4,
-    unidades: 'botellas'
+    unidades: 'cartones'
   },
   {
     id: 'rn-03',
     nombre: 'Ron Medellín Añejo 3 Años',
     categoria: 'Ron',
     ...calcularOferta(19000),
-    presentacion: 'Botella 250 ml',
+    presentacion: 'Cartón 250 ml',
     imagen: '/Images/productos/ron-medellin.webp',
     stock: 4,
-    unidades: 'botellas'
-  },
-  {
-    id: 'rn-03',
-    nombre: 'Ron Viejo de Caldas 3 Años',
-    categoria: 'Ron',
-    ...calcularOferta(55000, 0, 60000),
-    presentacion: 'Botella 250 ml',
-    imagen: '/Images/productos/caldas-250.jpg',
-    stock: 4,
-    unidades: 'botellas'
+    unidades: 'cartones'
   },
 
   // --- CERVEZA ---
@@ -273,7 +263,7 @@ export const productos = [
     presentacion: 'Lata 330 ml',
     imagen: '/Images/productos/Vodka-Smirnoff.webp',
     stock: 7,
-    unidades: 'Latas'
+    unidades: 'latas'
   },
   {
     id: 'vod-02',
@@ -283,7 +273,7 @@ export const productos = [
     presentacion: 'Botella 300 ml',
     imagen: '/Images/productos/Vodka-Like.webp',
     stock: 24,
-    unidades: 'Botella'
+    unidades: 'botellas'
   },
 {
     id: 'vod-03',
@@ -293,7 +283,7 @@ export const productos = [
     presentacion: 'Botella 750 ml',
     imagen: '/Images/productos/Vodka-Smirnoff-Tamarindo.webp',
     stock: 0,
-    unidades: 'Botella'
+    unidades: 'botellas'
   },
 
   // --- CIGARRILLOS ---
@@ -305,7 +295,7 @@ export const productos = [
     presentacion: 'Medio',
     imagen: '/Images/productos/Lucky-Verde-Medio.webp',
     stock: 20,
-    unidades: 'Medios'
+    unidades: 'medios'
   },
   {
     id: 'cig-02',
@@ -315,17 +305,7 @@ export const productos = [
     presentacion: 'Medio',
     imagen: '/Images/productos/Lucky-Alaska-Medio.webp',
     stock: 20,
-    unidades: 'Medios'
-  },
-  {
-    id: 'cig-02',
-    nombre: 'Lucky Strike Alaska',
-    categoria: 'Cigarrillos',
-    ...calcularOferta(7500),
-    presentacion: 'Medio',
-    imagen: '/Images/productos/Luke-Alaska-Medio.jpg',
-    stock: 20,
-    unidades: 'Medios'
+    unidades: 'medios'
   },
   {
     id: 'cig-03',
@@ -335,7 +315,7 @@ export const productos = [
     presentacion: 'Medio',
     imagen: '/Images/productos/Mustang-Azul-Medio.webp',
     stock: 40,
-    unidades: 'Medios'
+    unidades: 'medios'
   },
   {
     id: 'cig-04',
@@ -345,7 +325,7 @@ export const productos = [
     presentacion: 'Unidad',
     imagen: '/Images/productos/Encendedor-Clipper.webp',
     stock: 0,
-    unidades: 'Unidades'
+    unidades: 'unidades'
   },
   {
     id: 'cig-05',
@@ -355,7 +335,7 @@ export const productos = [
     presentacion: 'Unidad',
     imagen: '/Images/productos/Encendedores.webp',
     stock: 25,
-    unidades: 'Unidades'
+    unidades: 'unidades'
   },
 
   // --- Hidratantes y Energizantes ---
@@ -420,9 +400,9 @@ export const productos = [
     unidades: 'botellas'
   },
 
-  // --- Hielo Y Otras Bebidas ---
+  // --- Otras Bebidas ---
   {
-    id: 'ins-01',
+    id: 'Otr-01',
     nombre: 'Los Cuates',
     categoria: 'Otras Bebidas',
     ...calcularOferta(5000,0,5500),
@@ -432,7 +412,7 @@ export const productos = [
     unidades: 'latas'
   },
   {
-    id: 'ins-02',
+    id: 'Otr-02',
     nombre: 'Four Loko',
     categoria: 'Otras Bebidas',
     ...calcularOferta(18500,0,20000),
@@ -442,7 +422,7 @@ export const productos = [
     unidades: 'latas'
   },
   {
-    id: 'ins-03',
+    id: 'Otr-03',
     nombre: 'Bretaña',
     categoria: 'Otras Bebidas',
     ...calcularOferta(2500),
@@ -452,7 +432,7 @@ export const productos = [
     unidades: 'botellas'
   },
   {
-    id: 'ins-04',
+    id: 'Otr-04',
     nombre: 'Gaseosa Coca-Cola',
     categoria: 'Otras Bebidas',
     ...calcularOferta(4000),

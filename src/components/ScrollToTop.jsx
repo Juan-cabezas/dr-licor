@@ -31,7 +31,7 @@ export default function ScrollToTop() {
         <button
             onClick={scrollToTop}
             aria-label="Volver arriba"
-            className="fixed bottom-10 right-6 z-50 flex items-center gap-2 rounded-full bg-amber-500 px-4 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-amber-500/20 ring-1 ring-amber-400 transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
+            className="fixed bottom-13 right-6 z-50 flex items-center gap-2 rounded-full bg-amber-500 px-4 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-amber-500/20 ring-1 ring-amber-400 transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
         >
             <svg
                 className="h-4 w-4"
