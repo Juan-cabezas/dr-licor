@@ -58,14 +58,14 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
         e.preventDefault();
 
         if (!acceptedTerms) {
-        alert('Debes aceptar los Términos y Condiciones y la Política de Tratamiento de Datos para continuar.');
-        return;
+            alert('Debes aceptar los Términos y Condiciones y la Política de Tratamiento de Datos para continuar.');
+            return;
         }
 
-        let mensaje = 'Hola Dr. Licor!  Quiero realizar el siguiente pedido:\n\n';
+        let mensaje = 'Hola Dr. Licor! Quiero realizar el siguiente pedido:\n\n';
         
         // Datos del Cliente
-        mensaje += 'DATOS DEL CLIENTE\n';
+        mensaje += '*DATOS DEL CLIENTE*\n';
         mensaje += `• Nombre: ${formData.nombre}\n`;
         mensaje += `• Teléfono: ${formData.telefono}\n`;
         mensaje += `• Correo: ${formData.correo}\n`;
@@ -87,8 +87,16 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
 
         const urlWhatsApp = `https://wa.me/573222524569?text=${encodeURIComponent(mensaje)}`;
         
-        // Abrir WhatsApp en una pestaña nueva
-        window.open(urlWhatsApp, '_blank');
+        // Abrir WhatsApp de forma segura según el dispositivo
+        const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (esMovil) {
+            // En celulares redirige directamente a la app de WhatsApp sin bloqueo de pop-up
+            window.location.href = urlWhatsApp;
+        } else {
+            // En computadora lo abre en una pestaña nueva
+            window.open(urlWhatsApp, '_blank');
+        }
 
         // Limpiamos el formulario y cerramos el modal
         handleResetForm();
@@ -135,6 +143,10 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
                                 type="tel"
                                 name="telefono"
                                 required
+                                pattern="[0-9]{10}"
+                                maxLength={10}
+                                inputMode="numeric"
+                                title="Ingresa un número de celular de 10 dígitos (ej. 3222524569)"
                                 value={formData.telefono}
                                 onChange={handleChange}
                                 placeholder="Ej. 3222524569"
