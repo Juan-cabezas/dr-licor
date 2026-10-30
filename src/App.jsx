@@ -8,10 +8,11 @@ import CartDrawer from './components/CartDrawer';
 import AgeVerificationModal from './components/AgeVerificationModal';
 import { CartProvider } from './context/CartContext';
 import Footer from './components/Footer';
+import { useEstadoTienda } from './lib/useEstadoTienda';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [enServicio, setEnServicio] = useState(true); // Estado para controlar si está abierto o cerrado
+  const { enServicio, cargandoEstado } = useEstadoTienda();
   const location = useLocation();
 
   const closeMenu = () => setMenuOpen(false);
@@ -43,8 +44,12 @@ export default function App() {
                 </span>
               </Link>
 
-              {/* BADGE DE ESTADO (En Servicio) */}
-              {enServicio ? (
+              {/* BADGE DE ESTADO (En Servicio / Cerrado dinámico) */}
+              {cargandoEstado ? (
+                <span className="ml-1 sm:ml-2 inline-flex items-center gap-1.5 rounded-full bg-slate-800/50 px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-medium text-slate-400 animate-pulse">
+                  Sincronizando...
+                </span>
+              ) : enServicio ? (
                 <span className="ml-1 sm:ml-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-semibold text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>En Servicio</span>

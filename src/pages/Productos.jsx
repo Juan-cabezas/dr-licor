@@ -1,15 +1,153 @@
-import React, { useState } from 'react';
-import { productos, categorias } from '../data/productos';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import MetodosPago from '../components/MetodosPago';
+import { supabase } from '../lib/supabase';
+import { calcularOferta } from '../utils/ofertas';
 
 export default function Productos() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
+  const [categoriasLista, setCategoriasLista] = useState(['Todos']);
+  const [productosLista, setProductosLista] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  
   const { agregarAlCarrito } = useCart();
 
+  // Función reutilizable para obtener y mapear productos + combos
+  const obtenerCatalogoUnificado = async () => {
+    // 1. Obtener productos activos individuales
+    const { data: prodData, error: prodError } = await supabase
+      .from('productos')
+      .select('*, categorias(nombre)')
+      .eq('activo', true);
+
+    if (prodError) throw prodError;
+
+    // 2. Obtener combos activos desde la vista con stock dinámico
+    const { data: comboData, error: comboError } = await supabase
+      .from('v_combos_con_stock')
+      .select('*')
+      .eq('activo', true);
+
+    if (comboError) throw comboError;
+
+    // Mapeo de productos unitarios
+    const productosMapeados = (prodData || []).map((p) => {
+      const precioActual = Number(p.precio);
+      const precioOriginal = p.precio_original ? Number(p.precio_original) : null;
+      const descuentoBd = p.descuento || 0;
+      const oferta = calcularOferta(precioActual, descuentoBd, precioOriginal);
+
+      return {
+        id: `prod-${p.id}`,       
+        dbId: p.id,               
+        tipo: 'producto',        
+        codigo: p.codigo,
+        nombre: p.nombre,
+        categoria: p.categorias?.nombre || 'General',
+        precio: oferta.precio,
+        descuento: oferta.descuento,
+        precioAnterior: oferta.precioAnterior,
+        presentacion: p.presentacion,
+        imagen: p.imagen,
+        stock: p.stock,
+        unidades: p.unidades,
+      };
+    });
+
+    // Mapeo de combos desde la vista
+    const combosMapeados = (comboData || []).map((c) => {
+      const precioActual = Number(c.precio);
+      const precioOriginal = c.precio_original ? Number(c.precio_original) : null;
+      const descuentoBd = c.descuento || 0;
+      const oferta = calcularOferta(precioActual, descuentoBd, precioOriginal);
+
+      return {
+        id: `combo-${c.id}`,      
+        dbId: c.id,               
+        tipo: 'combo',            
+        codigo: c.codigo,
+        nombre: c.nombre,
+        categoria: c.categoria_nombre || 'Combos',
+        precio: oferta.precio,
+        descuento: oferta.descuento,
+        precioAnterior: oferta.precioAnterior,
+        presentacion: c.presentacion,
+        imagen: c.imagen,
+        stock: c.stock,
+        unidades: c.unidades || 'combos',
+      };
+    });
+
+    return [...productosMapeados, ...combosMapeados];
+  };
+
+  useEffect(() => {
+    async function cargarInicial() {
+      try {
+        setCargando(true);
+
+        // Cargar Categorías
+        const { data: catData, error: catError } = await supabase
+          .from('categorias')
+          .select('nombre')
+          .order('id', { ascending: true });
+
+        if (catError) throw catError;
+
+        if (catData) {
+          const nombresCategorias = catData
+            .map((cat) => cat.nombre)
+            .filter((nombre) => nombre.toLowerCase() !== 'todos');
+          
+          setCategoriasLista(['Todos', ...nombresCategorias]);
+        }
+
+        // Cargar Catálogo Unificado
+        const catalogo = await obtenerCatalogoUnificado();
+        setProductosLista(catalogo);
+
+      } catch (err) {
+        console.error('Error al cargar la tienda.', err.message);
+      } finally {
+        setCargando(false);
+      }
+    }
+
+    cargarInicial();
+
+    // SUSCRIPCIÓN EN TIEMPO REAL (SUPABASE REALTIME)
+    const canalRealtime = supabase
+      .channel('cambios-inventario-productos')
+      .on(
+        'postgres_changes',
+        {
+          event: '*', // Escucha INSERT, UPDATE, DELETE
+          schema: 'public',
+          table: 'productos',
+        },
+        async () => {
+          // Cuando un producto cambia de stock en la DB, actualizamos la lista
+          // sin activar el spinner de carga para que la UI sea 100% fluida.
+          try {
+            const catalogoActualizado = await obtenerCatalogoUnificado();
+            setProductosLista(catalogoActualizado);
+          } catch (error) {
+            console.error('Error actualizando stock en tiempo real:', error.message);
+          }
+        }
+      )
+      .subscribe();
+
+    // Limpieza de la suscripción al desmontar el componente
+    return () => {
+      supabase.removeChannel(canalRealtime);
+    };
+  }, []);
+
+  // FILTRADO DE PRODUCTOS EN VIVO
   const productosFiltrados = categoriaSeleccionada === 'Todos'
-    ? productos
-    : productos.filter((p) => p.categoria === categoriaSeleccionada);
+    ? productosLista
+    : productosLista.filter((p) => p.categoria === categoriaSeleccionada);
 
   return (
     <div className="min-h-screen bg-slate-950 pt-28 pb-20 px-4 sm:px-6 lg:px-8">
@@ -27,27 +165,33 @@ export default function Productos() {
             Catálogo de Productos
           </h1>
           <p className="mt-3 text-slate-400 text-sm">
-            Selecciona los licores que deseas para agregarlos a tu pedido.
+            Selecciona los licores y combos que deseas para agregarlos a tu pedido.
           </p>
           
           {/* BARRA SUPERIOR DE CATEGORÍAS */}
-          <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-            {categorias.map((cat) => {
-              const estaActiva = categoriaSeleccionada === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setCategoriaSeleccionada(cat)}
-                  className={`rounded-2xl px-5 py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 border ${
-                    estaActiva
-                      ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-lg shadow-amber-500/20 scale-105'
-                      : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700'
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
+          <div className="mt-8 flex flex-wrap justify-center gap-2.5 items-center">
+            {cargando ? (
+              <span className="text-xs font-medium text-amber-500/80 animate-pulse">
+                Sincronizando categorías...
+              </span>
+            ) : (
+              categoriasLista.map((cat) => {
+                const estaActiva = categoriaSeleccionada === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setCategoriaSeleccionada(cat)}
+                    className={`rounded-2xl px-5 py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 border ${
+                      estaActiva
+                        ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-lg shadow-amber-500/20 scale-105'
+                        : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })
+            )}
           </div>
         </div>
 
@@ -65,7 +209,11 @@ export default function Productos() {
 
           {/* GRILLA DE TARJETAS */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {productosFiltrados.length > 0 ? (
+            {cargando ? (
+              <div className="col-span-full py-16 text-center text-slate-400 animate-pulse">
+                Cargando productos y combos...
+              </div>
+            ) : productosFiltrados.length > 0 ? (
               productosFiltrados.map((producto) => {
                 const enStock = producto.stock > 0;
                 const stockBajo = producto.stock > 0 && producto.stock <= 3;
@@ -169,7 +317,6 @@ export default function Productos() {
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -35,6 +35,10 @@ export function CartProvider({ children }) {
     setCarrito((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const vaciarCarrito = () => {
+    setCarrito([]);
+  };
+
   const toggleCart = () => setIsCartOpen(!isCartOpen);
 
   const totalArticulos = carrito.reduce((sum, item) => sum + item.cantidad, 0);
@@ -52,6 +56,7 @@ export function CartProvider({ children }) {
         agregarAlCarrito,
         disminuirCantidad,
         eliminarDelCarrito,
+        vaciarCarrito,
         totalArticulos,
         totalPrecio,
       }}

@@ -38,7 +38,7 @@ export default function MetodosPagoBarra() {
           </div>
           <div>
             <h4 className="text-xs font-bold text-white">Cobertura De Entregas</h4>
-            <p className="text-[11px] text-slate-400">Domicilios a barrios cercanos a Suba San Pedro</p>
+            <p className="text-[11px] text-slate-400">Domicilios a barrios cercanos en Suba y San Pedro</p>
             <p className="text-[11px] text-slate-400">Costo del envío: $6.000 pesos.</p>
           </div>
         </div>

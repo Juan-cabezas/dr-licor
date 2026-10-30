@@ -1,30 +1,37 @@
 import React, { useState } from 'react';
+import { supabase } from '../lib/supabase';
+import { useCart } from '../context/CartContext';
 
 export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, onOpenLegalModal }) {
-  // Estados para los datos del formulario del cliente
+    
+    const { vaciarCarrito } = useCart();
+    
+    // Estados para los datos del formulario del cliente
     const [formData, setFormData] = useState({
-        nombre: '',
+        nombre_completo: '',
         telefono: '',
-        correo: '',
-        direccion: '',
+        email: '',
+        direccion_entrega: '',
         metodoPago: 'transferencia',
     });
 
     // Estado para el checkbox obligatorio de términos y tratamiento de datos
     const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [enviando, setEnviando] = useState(false);
 
     if (!isOpen) return null;
 
     // Función para resetear el formulario a sus valores iniciales vacíos
     const handleResetForm = () => {
         setFormData({
-        nombre: '',
-        telefono: '',
-        correo: '',
-        direccion: '',
-        metodoPago: 'transferencia',
+            nombre_completo: '',
+            telefono: '',
+            email: '',
+            direccion_entrega: '',
+            metodoPago: 'transferencia',
         });
         setAcceptedTerms(false);
+        setEnviando(false);
     };
 
     // Manejar el cierre del modal limpiando el formulario
@@ -36,25 +43,25 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
     // Manejar cambios en los inputs del formulario
     const handleChange = (e) => {
         setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
+            ...formData,
+            [e.target.name]: e.target.value,
         });
     };
 
     // Mapeo legible del método de pago para el mensaje de WhatsApp
     const obtenerTextoMetodoPago = (metodo) => {
         switch (metodo) {
-        case 'transferencia':
-            return 'Transferencia Bancaria (QR / Llaves)';
-        case 'contraentrega':
-            return 'Pago Contra Entrega (Transferencia)';
-        default:
-            return 'WhatsApp / Por coordinar';
+            case 'transferencia':
+                return 'Transferencia Bancaria (QR / Llaves)';
+            case 'contraentrega':
+                return 'Pago Contra Entrega (Transferencia)';
+            default:
+                return 'WhatsApp / Por coordinar';
         }
     };
 
-    // Generar el mensaje estructurado para WhatsApp y limpiar el formulario
-    const handleEnviarPedidoWhatsApp = (e) => {
+    // Generar el mensaje estructurado para WhatsApp, guardar en DB y limpiar
+    const handleEnviarPedidoWhatsApp = async (e) => {
         e.preventDefault();
 
         if (!acceptedTerms) {
@@ -62,45 +69,82 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
             return;
         }
 
-        let mensaje = 'Hola Dr. Licor! Quiero realizar el siguiente pedido:\n\n';
-        
-        // Datos del Cliente
-        mensaje += '*DATOS DEL CLIENTE*\n';
-        mensaje += `• Nombre: ${formData.nombre}\n`;
-        mensaje += `• Teléfono: ${formData.telefono}\n`;
-        mensaje += `• Correo: ${formData.correo}\n`;
-        mensaje += `• Dirección: ${formData.direccion}\n\n`;
+        try {
+            setEnviando(true);
+            const costoEnvio = 6000;
+            const totalConEnvio = totalPrecio + costoEnvio;
 
-        // Productos del Carrito
-        mensaje += '*DETALLE DEL PEDIDO*\n';
-        carrito.forEach((item) => {
-        mensaje += `• ${item.cantidad}x ${item.nombre} ($${(item.precio * item.cantidad).toLocaleString('es-CO')})\n`;
-        });
+            // Enviar datos a la Base de Datos mediante la función RPC
+            const { data: pedidoId, error: errorRpc } = await supabase.rpc('crear_pedido_completo', {
+                p_nombre_completo: formData.nombre_completo,
+                p_telefono: formData.telefono,
+                p_email: formData.email,
+                p_direccion_entrega: formData.direccion_entrega,
+                p_metodo_pago: formData.metodoPago,
+                p_subtotal: totalPrecio,
+                p_costo_domicilio: costoEnvio,
+                p_total_pedido: totalConEnvio,
+                p_acepta_terminos: acceptedTerms,
+                p_acepta_tratamiento_datos: acceptedTerms,
+                p_es_mayor_de_edad: acceptedTerms,
+                p_items: carrito.map(item => ({
+                    id: item.dbId,
+                    tipo: item.tipo, // Identifica si es producto o combo
+                    cantidad: item.cantidad,
+                    precio: item.precio
+                }))
+            });
+            
+            if (errorRpc) {
+                console.error('Detalle del error de db:', errorRpc);
+                throw errorRpc;
+            }
 
-        const costoEnvio = 6000;
-        const totalConEnvio = totalPrecio + costoEnvio;
+            console.log('Pedido guardado con éxito.');
 
-        mensaje += `\n* Subtotal: $${totalPrecio.toLocaleString('es-CO')}`;
-        mensaje += `\n* Domicilio (Suba): $${costoEnvio.toLocaleString('es-CO')}`;
-        mensaje += `\n* TOTAL A PAGAR: $${totalConEnvio.toLocaleString('es-CO')}\n`;
-        mensaje += `\n* Método de pago: ${obtenerTextoMetodoPago(formData.metodoPago)}`;
+            vaciarCarrito();
 
-        const urlWhatsApp = `https://wa.me/573222524569?text=${encodeURIComponent(mensaje)}`;
-        
-        // Abrir WhatsApp de forma segura según el dispositivo
-        const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            let mensaje = 'Hola Dr. Licor! Quiero realizar el siguiente pedido:\n\n';
+            
+            // Datos del Cliente
+            mensaje += '*DATOS DEL CLIENTE*\n';
+            mensaje += `• Nombre: ${formData.nombre_completo}\n`;
+            mensaje += `• Teléfono: ${formData.telefono}\n`;
+            mensaje += `• Correo: ${formData.email}\n`;
+            mensaje += `• Dirección: ${formData.direccion_entrega}\n\n`;
 
-        if (esMovil) {
-            // En celulares redirige directamente a la app de WhatsApp sin bloqueo de pop-up
-            window.location.href = urlWhatsApp;
-        } else {
-            // En computadora lo abre en una pestaña nueva
-            window.open(urlWhatsApp, '_blank');
+            // Productos del Carrito
+            mensaje += '*DETALLE DEL PEDIDO*\n';
+            carrito.forEach((item) => {
+                mensaje += `• ${item.cantidad}x ${item.nombre} ($${(item.precio * item.cantidad).toLocaleString('es-CO')})\n`;
+            });
+
+            mensaje += `\nSubtotal: $${totalPrecio.toLocaleString('es-CO')}`;
+            mensaje += `\nDomicilio: $${costoEnvio.toLocaleString('es-CO')}`;
+            mensaje += `\nTOTAL A PAGAR: $${totalConEnvio.toLocaleString('es-CO')}\n`;
+            mensaje += `\nMétodo de pago: ${obtenerTextoMetodoPago(formData.metodoPago)}`;
+
+            const urlWhatsApp = `https://wa.me/573222524569?text=${encodeURIComponent(mensaje)}`;
+            
+            // Abrir WhatsApp de forma segura según el dispositivo
+            const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (esMovil) {
+                window.location.href = urlWhatsApp;
+            } else {
+                window.open(urlWhatsApp, '_blank');
+            }
+
+            // Limpiamos el formulario y cerramos el modal
+            handleResetForm();
+            onClose();
+
+        } catch (error) {
+            console.error('Error completo al guardar pedido:', error);
+            alert('Hubo un error al guardar tu pedido en la base de datos.');
+        } finally {
+            setEnviando(false);
         }
-
-        // Limpiamos el formulario y cerramos el modal
-        handleResetForm();
-        onClose();
     };
 
     return (
@@ -127,9 +171,9 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
                         <label className="block font-semibold text-slate-300 mb-1">Nombre Completo *</label>
                         <input
                             type="text"
-                            name="nombre"
+                            name="nombre_completo"
                             required
-                            value={formData.nombre}
+                            value={formData.nombre_completo}
                             onChange={handleChange}
                             placeholder="Ej. Pepito Pérez"
                             className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-white focus:border-amber-500 focus:outline-none"
@@ -157,9 +201,9 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
                             <label className="block font-semibold text-slate-300 mb-1">Correo Electrónico *</label>
                             <input
                                 type="email"
-                                name="correo"
+                                name="email"
                                 required
-                                value={formData.correo}
+                                value={formData.email}
                                 onChange={handleChange}
                                 placeholder="dr.licor.bogota@gmail.com"
                                 className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-white focus:border-amber-500 focus:outline-none"
@@ -171,9 +215,9 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
                         <label className="block font-semibold text-slate-300 mb-1">Dirección e Indicaciones de Entrega *</label>
                         <input
                             type="text"
-                            name="direccion"
+                            name="direccion_entrega"
                             required
-                            value={formData.direccion}
+                            value={formData.direccion_entrega}
                             onChange={handleChange}
                             placeholder="Ej. Calle 000 # 00-00, Suba (Barrio / Edificio / Torre / Apt)"
                             className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-white focus:border-amber-500 focus:outline-none"
@@ -275,10 +319,10 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
                     <div className="pt-2">
                         <button
                             type="submit"
-                            disabled={!acceptedTerms}
+                            disabled={!acceptedTerms || enviando}
                             className="w-full flex items-center justify-center gap-2 rounded-xl bg-amber-500 py-3 text-center text-sm font-extrabold text-slate-950 shadow-lg shadow-amber-500/20 hover:bg-amber-400 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                         >
-                            <span>Enviar Pedido</span>
+                            <span>{enviando ? 'Registrando Pedido...' : 'Enviar Pedido'}</span>
                             <span className="text-base">🚀</span>
                         </button>
                     </div>

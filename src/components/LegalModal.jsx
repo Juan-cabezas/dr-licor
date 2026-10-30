@@ -28,7 +28,7 @@ export default function LegalModal({ docType, onClose }) {
                     </button>
                 </div>
 
-                {/* CONTENIDO (Resumen o Completo) */}
+                {/* CONTENIDO */}
                 <div className="my-4 max-h-[60vh] overflow-y-auto pr-2 text-xs leading-relaxed space-y-3">
                     {viewMode === 'summary' ? document.summary : document.fullText}
                 </div>

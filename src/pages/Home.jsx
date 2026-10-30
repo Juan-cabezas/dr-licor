@@ -176,7 +176,7 @@ export default function Home() {
                                 <h2 className="text-2xl font-bold text-white sm:text-3xl">Nuestra Sede</h2>
                                 <div className="mt-2.5 h-1 w-16 bg-amber-500 rounded-full" />                    
                                 <p className="mt-6 text-sm text-slate-300 leading-relaxed">
-                                    Operamos en la ciudad de <strong>Bogotá D.C.</strong>, principalmente en la localidad de <strong>Suba (San Pedro)</strong>. Realizamos domicilios a barrios cercanos para garantizar entregas en el menor tiempo posible y asegurar la calidad de las bebidas frías e insumos.
+                                    Operamos en la ciudad de <strong>Bogotá D.C.</strong>, principalmente en la localidad de <strong>Suba y cercanias del barrio (San Pedro)</strong>. También realizamos domicilios a barrios cercanos para garantizar entregas en el menor tiempo posible y asegurar la calidad de las bebidas frías e insumos.
                                 </p>
                             </div>
                             <div className="overflow-hidden rounded-2xl">

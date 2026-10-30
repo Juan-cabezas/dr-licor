@@ -34,7 +34,7 @@ export default function Footer() {
                         </h3>
                         <ul className="mt-4 space-y-2 text-xs text-slate-400">
                             <li>Tiempo aprox: 30 minutos.</li>
-                            <li>Cobertura: Suba San Pedro y barrios cercanos.</li>
+                            <li>Cobertura: Suba, San Pedro y barrios cercanos.</li>
                             <li>Localidad de Suba, Bogotá D.C.</li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@ export default function Footer() {
                             Horarios y Atención
                         </h3>
                         <ul className="mt-4 space-y-2 text-xs text-slate-400">
-                            <li>Todos los días hasta la 01:00 AM</li>
+                            <li>Todos los días de 02:00 PM hasta la 01:00 AM</li>
                             <li className="pt-1">
                                 • WhatsApp:{' '}
                                 <a
