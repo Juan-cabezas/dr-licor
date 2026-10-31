@@ -258,9 +258,10 @@ export default function Productos() {
                               ¡Últimas {producto.stock} {producto.unidades}!
                             </span>
                           ) : (
-                            <span className="rounded-md bg-slate-900/80 border border-slate-700/80 px-2 py-1 text-[10px] font-bold text-slate-300 backdrop-blur-md">
+                            /*<span className="rounded-md bg-slate-900/80 border border-slate-700/80 px-2 py-1 text-[10px] font-bold text-slate-300 backdrop-blur-md">
                               {producto.stock} {producto.unidades} disp.
                             </span>
+                            */null
                           )}
                         </div>
                       </div>
