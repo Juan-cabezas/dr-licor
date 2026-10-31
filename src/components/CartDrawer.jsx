@@ -133,7 +133,7 @@ export default function CartDrawer() {
                     <span>Métodos de Pago y envío:</span>
                   </div>
                   <p>• Transferencia bancaria (QR / Llaves) o Pago en línea</p>
-                  <p>• El envío a domicilio tiene un costo adicional de $6.000.</p>
+                  <p>• El envío a domicilio tiene un costo adicional, según cobertura</p>
                   <p>• Pago contra entrega disponible (solo transferencia)</p>
                 </div>
 

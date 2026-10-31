@@ -71,7 +71,7 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
 
         try {
             setEnviando(true);
-            const costoEnvio = 6000;
+            const costoEnvio = 0;
             const totalConEnvio = totalPrecio + costoEnvio;
 
             // Enviar datos a la Base de Datos mediante la función RPC
@@ -120,8 +120,9 @@ export default function CheckoutModal({ isOpen, onClose, carrito, totalPrecio, o
             });
 
             mensaje += `\nSubtotal: $${totalPrecio.toLocaleString('es-CO')}`;
-            mensaje += `\nDomicilio: $${costoEnvio.toLocaleString('es-CO')}`;
-            mensaje += `\nTOTAL A PAGAR: $${totalConEnvio.toLocaleString('es-CO')}\n`;
+            //mensaje += `\nDomicilio: $${costoEnvio.toLocaleString('es-CO')}`;
+            mensaje += `\nDomicilio: Por calcular / Según cobertura`;
+            //mensaje += `\nTOTAL A PAGAR: $${totalConEnvio.toLocaleString('es-CO')}\n`;
             mensaje += `\nMétodo de pago: ${obtenerTextoMetodoPago(formData.metodoPago)}`;
 
             const urlWhatsApp = `https://wa.me/573222524569?text=${encodeURIComponent(mensaje)}`;
